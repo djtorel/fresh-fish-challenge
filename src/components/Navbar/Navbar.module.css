@@ -1,0 +1,98 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-secondary);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* --- Desktop Navigation --- */
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.navLinks a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.navLinks a:hover {
+  color: var(--accent-secondary);
+  cursor: pointer;
+}
+
+.menuIcon {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  background-color: var(--background-secondary);
+  gap: 5px;
+  border: none;
+  padding: 4px;
+}
+
+.menuIcon .bar {
+  width: 25px;
+  height: 3px;
+  border-radius: 5px;
+  background-color: var(--background-tertiary);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  .navLinks.mobile {
+    display: flex;
+  }
+
+  .navLinks a {
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .menuIcon {
+    display: flex;
+  }
+}
+
+/* Animation for the mobile menu */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

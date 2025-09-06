@@ -1,0 +1,107 @@
+.fishCard {
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.fishCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+.cardImageContainer {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.fishCard:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+.speciesName {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.nutrition {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nutrition p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.nutrition span {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-left: 0.5rem;
+}
+
+.infoSection {
+  margin-bottom: 1.5rem;
+}
+
+.infoSection h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.healthBenefits {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.biologyList {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.biologyList li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .fishCard {
+    flex-direction: row;
+  }
+
+  .cardImageContainer {
+    width: 40%;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  .cardContent {
+    width: 60%;
+    padding: 2rem;
+  }
+}

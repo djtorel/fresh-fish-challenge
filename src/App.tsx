@@ -1,41 +1,31 @@
-import {Component, createEffect, Resource} from 'solid-js';
+import {Component, createEffect, createSignal, Match, Resource, Show, Switch} from 'solid-js';
 
-import logo from './logo.svg';
-import styles from './App.module.css';
-import {FishData, FishProvider, useFishProvider} from "./context/DataContext";
-
-const TestFisheries: Component = () => {
-  const contextValue= useFishProvider();
-
-  createEffect(() => {
-    if (!contextValue.loading && contextValue()) {
-      console.log(contextValue());
-    }
-  })
-  return <></>;
-}
+import {useFishProvider} from "./context/DataContext";
+import Layout from "./components/Layout/Layout";
+import Home from "./components/Home/Home";
+import {FisheryRegion} from "./types";
+import FisheryRegionPage from "./components/FisheryRegionPage/FisheryRegionPage";
 
 const App: Component = () => {
+  const [activeRegion, setActiveRegion] = createSignal('home');
+  const regions = useFishProvider();
+
   return (
-    <FishProvider>
-      <TestFisheries />
-      <div className={styles.App}>
-        <header className={styles.header}>
-          <img src={logo} className={styles.logo} alt="logo"/>
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className={styles.link}
-            href="https://github.com/solidjs/solid"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Solid
-          </a>
-        </header>
-      </div>
-    </FishProvider>
+      <Layout onNavigate={setActiveRegion}>
+        <Switch>
+          <Match when={activeRegion() === 'home'}>
+            <Home />
+          </Match>
+          <Match when={activeRegion() !== 'home'}>
+            <Show
+              when={regions()?.[activeRegion()]}
+              fallback={<div>Loading region details...</div>}
+            >
+              <FisheryRegionPage regionData={regions()?.[activeRegion()] as FisheryRegion} regionName={activeRegion()} />
+            </Show>
+          </Match>
+        </Switch>
+      </Layout>
   );
 };
 
